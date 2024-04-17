@@ -1,0 +1,10 @@
+export { default as AppLayout } from "./AppLayout";
+export { default as Landing } from "./Landing";
+export { default as DetailPage } from "./DetailPage";
+export { default as loginPage } from "./loginPage";
+export { default as registerPage } from "./registerPage";
+export { default as orderPage } from "./orderPage";
+export { default as placeorderPage } from "./placeorderPage";
+export { default as cartPage } from "./cartPage";
+export { default as paymentPage } from "./paymentPage";
+export { default as errorPage } from "./errorPage";
