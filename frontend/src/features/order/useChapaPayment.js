@@ -26,12 +26,6 @@ function useChapaPayment() {
     onSuccess: (data) => {
       if (data.success.data.checkout_url) {
         console.log(data);
-
-        // Redirect to the checkout URL
-        // setTimeout(() => {
-        //   // Navigate to the checkout URL after a short delay
-        //   window.location.href = data.success.data.checkout_url;
-        // }, 100);
       } else {
         toast.error("Failed to get checkout URL");
       }

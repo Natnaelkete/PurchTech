@@ -11,7 +11,7 @@ function Order() {
   const { id: orderId } = useParams();
 
   const { getOrder } = useGetOrder(orderId);
-  const { updateIsDeliver, isLoading: updateLoading } = useUpdateDeliver();
+  const { updateIsDeliver } = useUpdateDeliver();
   const { userInfo } = useSelector((state) => state.auth);
   const { isLoading } = useChapaPayment();
 

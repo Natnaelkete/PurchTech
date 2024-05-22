@@ -18,7 +18,7 @@ function OrderTable({ orders }) {
             <th>Delivered</th>
           </tr>
         </thead>
-        {orders.map((items, index) => (
+        {orders?.map((items, index) => (
           <tbody key={items._id}>
             {/* row 1 */}
             <tr>

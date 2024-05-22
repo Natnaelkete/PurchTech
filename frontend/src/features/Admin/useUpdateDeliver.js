@@ -6,7 +6,7 @@ function useUpdateDeliver() {
   const queryClient = useQueryClient();
   const { mutate: updateIsDeliver, isLoading } = useMutation({
     mutationFn: (id) => updateDeliver(id),
-    onSuccess: (data) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["orders"] });
       toast.success("Order delivered");
     },

@@ -1,15 +1,13 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import useUpdateMutation from "./useUpdateMutation";
 import OrderTable from "./OrderTable";
 import useGetMyOrders from "../order/useGetMyOrders";
-import Spinner from "../../ui/Spinner";
 
 function Profile() {
   const { userInfo } = useSelector((state) => state.auth);
 
-  const { UpdateUser, isLoading } = useUpdateMutation();
+  const { UpdateUser } = useUpdateMutation();
   const { myOrders, isLoading: myOrderLoading } = useGetMyOrders();
 
   function handleSubmit(e) {
@@ -28,10 +26,10 @@ function Profile() {
   }
 
   return (
-    <div className="flex flex-row gap-3">
+    <div className="flex flex-col md:flex-row ">
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col  gap-4 w-2/5 mt-7 h-screen"
+        className="flex flex-col gap-4 md:w-2/5 w-full mt-7 mb-10 md:h-screen"
       >
         <label className="input input-bordered flex items-center gap-2">
           <svg
