@@ -1,7 +1,7 @@
 import Placeorder from "../features/placeorder/Placeorder";
 
-function PlaceorderPage() {
+function PlaceorderPages() {
   return <Placeorder />;
 }
 
-export default PlaceorderPage;
+export default PlaceorderPages;

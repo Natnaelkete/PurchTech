@@ -1,6 +1,6 @@
 import Detail from "../features/detail/Detail";
 
-function DetailPage() {
+function DetailPages() {
   return (
     <div>
       <Detail />
@@ -8,4 +8,4 @@ function DetailPage() {
   );
 }
 
-export default DetailPage;
+export default DetailPages;

@@ -1,7 +1,7 @@
 import Shipping from "../features/shipping/Shipping";
 
-function ShippingPage() {
+function ShippingPages() {
   return <Shipping />;
 }
 
-export default ShippingPage;
+export default ShippingPages;

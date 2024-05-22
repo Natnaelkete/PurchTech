@@ -1,7 +1,7 @@
 import Payment from "../features/payment/Payment";
 
-function PaymentPage() {
+function PaymentPages() {
   return <Payment />;
 }
 
-export default PaymentPage;
+export default PaymentPages;

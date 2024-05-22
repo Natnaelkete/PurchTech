@@ -1,7 +1,7 @@
 import Product from "../features/products/Product";
 
-function ProductPage() {
+function ProductPages() {
   return <Product />;
 }
 
-export default ProductPage;
+export default ProductPages;

@@ -1,6 +1,6 @@
 import Order from "../features/order/Order";
 
-function OrderPage() {
+function OrderPages() {
   return (
     <div>
       <Order />
@@ -8,4 +8,4 @@ function OrderPage() {
   );
 }
 
-export default OrderPage;
+export default OrderPages;

@@ -1,6 +1,6 @@
 import OrderList from "../features/Admin/OrderList";
 
-function OrderListPage() {
+function OrderListPages() {
   return (
     <div>
       <OrderList />
@@ -8,4 +8,4 @@ function OrderListPage() {
   );
 }
 
-export default OrderListPage;
+export default OrderListPages;

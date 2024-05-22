@@ -1,7 +1,7 @@
 import Profile from "../features/profile/Profile";
 
-function ProfilePage() {
+function ProfilePages() {
   return <Profile />;
 }
 
-export default ProfilePage;
+export default ProfilePages;

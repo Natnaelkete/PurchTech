@@ -1,7 +1,7 @@
 import ProductList from "../features/Admin/ProductList";
 
-function ProductListPage() {
+function ProductListPages() {
   return <ProductList />;
 }
 
-export default ProductListPage;
+export default ProductListPages;

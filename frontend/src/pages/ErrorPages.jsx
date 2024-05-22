@@ -1,7 +1,7 @@
 import Error from "../features/Error";
 
-function ErrorPage() {
+function ErrorPages() {
   return <Error />;
 }
 
-export default ErrorPage;
+export default ErrorPages;
