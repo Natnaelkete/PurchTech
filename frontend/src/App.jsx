@@ -1,7 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import {
   AppLayout,
-  LoginPage,
+  LoginPages,
   RegisterPage,
   OrderPage,
   PlaceorderPage,
@@ -60,7 +60,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <LoginPage />,
+    element: <LoginPages />,
     errorElement: <ErrorPage />,
   },
   {
