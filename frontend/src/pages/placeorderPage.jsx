@@ -1,9 +1,7 @@
-function placeorderPage() {
-    return (
-        <div>
-            placeorder
-        </div>
-    )
+import Placeorder from "../features/placeorder/Placeorder";
+
+function PlaceorderPage() {
+  return <Placeorder />;
 }
 
-export default placeorderPage
+export default PlaceorderPage;

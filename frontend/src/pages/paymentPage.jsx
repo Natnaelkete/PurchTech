@@ -1,5 +1,7 @@
-function paymentPage() {
-  return <div>payment</div>;
+import Payment from "../features/payment/Payment";
+
+function PaymentPage() {
+  return <Payment />;
 }
 
-export default paymentPage;
+export default PaymentPage;

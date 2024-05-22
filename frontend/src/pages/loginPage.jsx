@@ -1,5 +1,7 @@
-function loginPage() {
-  return <div>login</div>;
+import Login from "../features/authentication/Login";
+
+function LoginPage() {
+  return <Login/>
 }
 
-export default loginPage;
+export default LoginPage;

@@ -1,5 +1,11 @@
-function orderPage() {
-  return <div>order</div>;
+import Order from "../features/order/Order";
+
+function OrderPage() {
+  return (
+    <div>
+      <Order />
+    </div>
+  );
 }
 
-export default orderPage;
+export default OrderPage;

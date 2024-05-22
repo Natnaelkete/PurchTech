@@ -1,4 +1,5 @@
 import Star from "./Star";
+import { formatCurrency } from "../utils/helper";
 
 function Cart({ item }) {
   return (
@@ -13,7 +14,9 @@ function Cart({ item }) {
             <Star value={item.rating} text={`${item.numReviews} review`} />
           </p>
 
-          <h1 className="text-3xl font-bold">{`${item.price}$`}</h1>
+          <h1 className="text-3xl font-bold">{`${formatCurrency(
+            item.price
+          )}$`}</h1>
         </div>
       </div>
     </div>

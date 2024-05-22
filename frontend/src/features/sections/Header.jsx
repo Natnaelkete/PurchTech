@@ -1,7 +1,16 @@
 import SearchInput from "../../ui/SearchInput";
 import logo from "../../assets/logo.png";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { formatCurrency } from "../../utils/helper";
+import Avatar from "../../ui/Avatarj";
 
 function Header() {
+  const cart = useSelector((state) => state.cart.cartItems);
+  const { userInfo } = useSelector((state) => state.auth);
+  const totalPrice = cart.reduce((acc, item) => acc + item.price * item.qty, 0);
+  const cartQuantity = cart.length;
+
   return (
     <div className="navbar bg-base-100 padding-x border-b  border-gray-600 py-3 ">
       <div className="navbar-start">
@@ -9,7 +18,9 @@ function Header() {
           <img src={logo} />
         </div>
         <div className="flex-1 hidden md:flex">
-          <a className="btn btn-ghost text-xl">Proshop</a>
+          <Link to={"/"} className="  text-xl">
+          PurchTech
+          </Link>
         </div>
         <div className="dropdown md:hidden">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle ">
@@ -65,7 +76,9 @@ function Header() {
                   d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                 />
               </svg>
-              <span className="badge badge-sm indicator-item">8</span>
+              <span className="badge badge-sm indicator-item">
+                {cartQuantity}
+              </span>
             </div>
           </div>
           <div
@@ -73,16 +86,26 @@ function Header() {
             className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow"
           >
             <div className="card-body">
-              <span className="font-bold text-lg">8 Items</span>
-              <span className="text-info">Subtotal: $999</span>
+              <span className="font-bold text-lg">{`${cartQuantity} Items`}</span>
+              <span className="text-info">{`Subtotal: ${formatCurrency(
+                totalPrice
+              )}`}</span>
               <div className="card-actions">
-                <button className="btn btn-primary btn-block">View cart</button>
+                <Link to={"/cart"} className="btn btn-primary btn-block">
+                  View cart
+                </Link>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <button className="btn hidden md:flex btn-outline ml-5">Sign up</button>
+      {userInfo ? (
+        <Avatar userInfo={userInfo} />
+      ) : (
+        <Link to={"/login"} className="btn hidden md:flex btn-outline ml-5">
+          Sign in
+        </Link>
+      )}
     </div>
   );
 }

@@ -1,40 +1,72 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import {
   AppLayout,
-  loginPage,
-  registerPage,
-  orderPage,
-  placeorderPage,
-  cartPage,
-  paymentPage,
+  LoginPage,
+  RegisterPage,
+  OrderPage,
+  PlaceorderPage,
+  CartPage,
+  PaymentPage,
   Landing,
-  errorPage,
+  ErrorPage,
   DetailPage,
+  ProfilePage,
+  ShippingPage,
+  OrderListPage,
+  ProductListPage,
+  UserListPage,
+  ProductPage,
 } from "./pages/index";
+import PrivateRoute from "./features/PrivateRoute";
+import AdminRoute from "./features/AdminRoute";
+import { ContextProvider } from "./features/products/ContextProvider";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <AppLayout />,
-    errorElement: <errorPage />,
+    element: (
+      <ContextProvider>
+        {" "}
+        <AppLayout />
+      </ContextProvider>
+    ),
+    errorElement: <ErrorPage />,
     children: [
       { index: true, element: <Landing /> },
-      { path: "/cart", element: <cartPage /> },
-      { path: "/order", element: <orderPage /> },
-      { path: "/placeorder", element: <placeorderPage /> },
-      { path: "/payment", element: <paymentPage /> },
+      { path: `/search/:search`, element: <ProductPage /> },
+      { path: "/cart", element: <CartPage /> },
+      { path: "/shipping", element: <PrivateRoute component={ShippingPage} /> },
+      { path: "/orders/:id", element: <PrivateRoute component={OrderPage} /> },
+      {
+        path: "/placeorder",
+        element: <PrivateRoute component={PlaceorderPage} />,
+      },
+      { path: "/payment", element: <PrivateRoute component={PaymentPage} /> },
+      { path: "/profile", element: <PrivateRoute component={ProfilePage} /> },
+      {
+        path: "/admin/orderlist",
+        element: <AdminRoute component={OrderListPage} />,
+      },
+      {
+        path: "/admin/productlist",
+        element: <AdminRoute component={ProductListPage} />,
+      },
+      {
+        path: "/admin/userlist",
+        element: <AdminRoute component={UserListPage} />,
+      },
       { path: "/product/:productId", element: <DetailPage /> },
     ],
   },
   {
     path: "/login",
-    element: <loginPage />,
-    errorElement: <errorPage />,
+    element: <LoginPage />,
+    errorElement: <ErrorPage />,
   },
   {
     path: "/register",
-    element: <registerPage />,
-    errorElement: <errorPage />,
+    element: <RegisterPage />,
+    errorElement: <ErrorPage />,
   },
 ]);
 
