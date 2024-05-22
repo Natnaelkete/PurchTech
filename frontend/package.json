@@ -17,6 +17,7 @@
     "antd": "^5.17.0",
     "axios": "^1.6.8",
     "dayjs": "^1.11.10",
+    "proshop": "file:..",
     "react": "^18.2.0",
     "react-cookie": "^7.1.4",
     "react-dom": "^18.2.0",
