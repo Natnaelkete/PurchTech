@@ -62,12 +62,20 @@ const __dirname = path.resolve();
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "/frontend/build")));
-  app.get("*", (req, res) =>
-    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"))
-  );
-} else {
-  app.get("/", (req, res) => res.send("API is running..."));
+  const __dirname = path.resolve();
+  app.use(express.static(path.join(__dirname, "frontend", "build")));
+
+  app.get("/list-files", (req, res) => {
+    const fs = require("fs");
+    fs.readdir(path.join(__dirname, "frontend", "build"), (err, files) => {
+      if (err) return res.status(500).send(err);
+      res.send(files);
+    });
+  });
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+  });
 }
 
 app.listen(port, () => {
