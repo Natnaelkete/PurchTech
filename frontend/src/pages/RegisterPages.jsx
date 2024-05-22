@@ -1,7 +1,7 @@
 import Registers from "../features/authentication/Register";
 
-function RegisterPage() {
+function RegisterPages() {
   return <Registers />;
 }
 
-export default RegisterPage;
+export default RegisterPages;

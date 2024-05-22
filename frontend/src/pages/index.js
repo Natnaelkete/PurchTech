@@ -2,7 +2,7 @@ export { default as AppLayout } from "./AppLayout";
 export { default as Landing } from "./Landing";
 export { default as DetailPage } from "./DetailPage";
 export { default as LoginPages } from "./LoginPages";
-export { default as RegisterPage } from "./RegisterPage";
+export { default as RegisterPages } from "./RegisterPages";
 export { default as OrderPage } from "./OrderPage";
 export { default as PlaceorderPage } from "./PlaceorderPage";
 export { default as CartPage } from "./CartPage";

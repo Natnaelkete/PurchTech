@@ -2,7 +2,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import {
   AppLayout,
   LoginPages,
-  RegisterPage,
+  RegisterPages,
   OrderPage,
   PlaceorderPage,
   CartPage,
@@ -65,7 +65,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/register",
-    element: <RegisterPage />,
+    element: <RegisterPages />,
     errorElement: <ErrorPage />,
   },
 ]);
