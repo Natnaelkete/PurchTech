@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const endpoint = "https://purchtech.onrender.com/api";
+const endpoint = "http://localhost:3000/api";
 
 const cookies = document.cookie.split(";");
 const userToken = cookies
