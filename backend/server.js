@@ -11,7 +11,6 @@ import chapaRoutes from "./routes/chapaRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 
-// Load environment variables
 dotenv.config();
 
 const app = express();
@@ -52,15 +51,6 @@ if (process.env.NODE_ENV === "production") {
   const __dirname = path.resolve();
   // Serve frontend build files
   app.use(express.static(path.join(__dirname, "frontend", "dist")));
-
-  // Debug route to list files in the dist directory
-  app.get("/list-files", (req, res) => {
-    const fs = require("fs");
-    fs.readdir(path.join(__dirname, "frontend", "dist"), (err, files) => {
-      if (err) return res.status(500).send(err);
-      res.send(files);
-    });
-  });
 
   // Serve index.html for any unknown routes
   app.get("*", (req, res) => {
