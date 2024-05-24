@@ -1,32 +1,33 @@
+import { Suspense, lazy } from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import {
-  AppLayout,
-  LoginPages,
-  RegisterPages,
-  OrderPages,
-  PlaceorderPages,
-  CartPages,
-  PaymentPages,
-  Landing,
-  ErrorPages,
-  DetailPages,
-  ProfilePages,
-  ShippingPages,
-  OrderListPages,
-  ProductListPages,
-  UserListPages,
-  ProductPages,
-} from "./pages/index";
 import PrivateRoute from "./features/PrivateRoute";
 import AdminRoute from "./features/AdminRoute";
 import { ContextProvider } from "./features/products/ContextProvider";
+import AppLayout from "./pages/AppLayout";
+import ErrorPages from "./pages/ErrorPages";
+import Spinner from "./ui/Spinner"
+
+// Lazy load pages
+const LoginPages = lazy(() => import("./pages/LoginPages"));
+const RegisterPages = lazy(() => import("./pages/RegisterPages"));
+const OrderPages = lazy(() => import("./pages/OrderPages"));
+const PlaceorderPages = lazy(() => import("./pages/PlaceorderPages"));
+const CartPages = lazy(() => import("./pages/CartPages"));
+const PaymentPages = lazy(() => import("./pages/PaymentPages"));
+const Landing = lazy(() => import("./pages/Landing"));
+const DetailPages = lazy(() => import("./pages/DetailPages"));
+const ProfilePages = lazy(() => import("./pages/ProfilePages"));
+const ShippingPages = lazy(() => import("./pages/ShippingPages"));
+const OrderListPages = lazy(() => import("./pages/OrderListPages"));
+const ProductListPages = lazy(() => import("./pages/ProductListPages"));
+const UserListPages = lazy(() => import("./pages/UserListPages"));
+const ProductPages = lazy(() => import("./pages/ProductPages"));
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
       <ContextProvider>
-        {" "}
         <AppLayout />
       </ContextProvider>
     ),
@@ -74,7 +75,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <Suspense fallback={<div><Spinner/></div>}>
+      <RouterProvider router={router} />
+    </Suspense>
+  );
 }
 
 export default App;
