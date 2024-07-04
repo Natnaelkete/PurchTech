@@ -63,7 +63,9 @@ router.get(
       .populate("user", "id name")
       .limit(pageSize)
       .skip(pageSize * (page - 1));
-    res.status(200).json({ orders, page, count,pages: Math.ceil(count / pageSize) });
+    res
+      .status(200)
+      .json({ orders, page, count, pages: Math.ceil(count / pageSize) });
   })
 );
 

@@ -49,8 +49,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/upload", uploadRoutes);
 app.use("/api/acceptPayment", chapaRoutes);
-app.use(notFound);
-app.use(errorHandler);
+
 
 const __dirname = path.resolve();
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
@@ -66,6 +65,9 @@ if (process.env.NODE_ENV === "production") {
     res.send("API is running");
   });
 }
+
+app.use(notFound);
+app.use(errorHandler);
 
 app.listen(port, () => {
   console.log(
