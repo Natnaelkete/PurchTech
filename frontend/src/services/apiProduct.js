@@ -1,48 +1,32 @@
 import axios from "axios";
 
-const endpoint = "http://localhost:3000/api";
-
-const cookies = document.cookie.split(";");
-const userToken = cookies
-  .find((cookie) => cookie.trim().startsWith("token="))
-  ?.split("=")[1];
-
 export async function getProduct(pageNum, search = "") {
   const { data } = await axios.get(
-    `${endpoint}/products?pageNumber=${pageNum}&search=${search}`
+    `/api/products?pageNumber=${pageNum}&search=${search}`
   );
   return data;
 }
 
 export async function getAllProduct() {
-  const res = await axios.get(`${endpoint}/products`);
+  const res = await axios.get(`/api/products`);
 
   return res.data;
 }
 
 export async function getTop() {
-  const res = await axios.get(`${endpoint}/products/top`);
+  const res = await axios.get(`/api/products/top`);
 
   return res.data;
 }
 
 export async function getProductById(id) {
-  const res = await axios.get(`${endpoint}/products/${id}`);
+  const res = await axios.get(`/api/products/${id}`);
 
   return res.data;
 }
 
 export async function createProduct() {
-  const res = await axios.post(
-    `${endpoint}/products`,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${userToken}`, // Add Authorization header with token
-        "Content-Type": "application/json", // Specify content type if needed
-      },
-    }
-  );
+  const res = await axios.post(`/api/products`, {});
   return res.data;
 }
 export async function updateProduct(
@@ -55,40 +39,26 @@ export async function updateProduct(
   category,
   countInStock
 ) {
-  const res = await axios.put(
-    `${endpoint}/products`,
-    {
-      id,
-      name,
-      price,
-      description,
-      image,
-      brand,
-      category,
-      countInStock,
-    },
-    {
-      headers: {
-        Authorization: `Bearer ${userToken}`, // Add Authorization header with token
-        "Content-Type": "application/json", // Specify content type if needed
-      },
-    }
-  );
-  return res.data;
-}
-
-export async function deleteProduct(id) {
-  const res = await axios.delete(`${endpoint}/products/${id}`, {
-    headers: {
-      Authorization: `Bearer ${userToken}`, // Add Authorization header with token
-      "Content-Type": "application/json", // Specify content type if needed
-    },
+  const res = await axios.put(`/api/products`, {
+    id,
+    name,
+    price,
+    description,
+    image,
+    brand,
+    category,
+    countInStock,
   });
   return res.data;
 }
 
+export async function deleteProduct(id) {
+  const res = await axios.delete(`/api/products/${id}`);
+  return res.data;
+}
+
 export async function registerUser({ name, email, password }) {
-  const res = await axios.post(`${endpoint}/users`, {
+  const res = await axios.post(`/api/users`, {
     name,
     email,
     password,
@@ -97,7 +67,7 @@ export async function registerUser({ name, email, password }) {
 }
 
 export async function createAuth(email, password) {
-  const res = await axios.post(`${endpoint}/users/auth`, {
+  const res = await axios.post(`/api/users/auth`, {
     email,
     password,
   });
@@ -106,7 +76,7 @@ export async function createAuth(email, password) {
 
 export async function getUsers() {
   try {
-    const res = await axios.get(`${endpoint}/users/auth`);
+    const res = await axios.get(`/api/users/auth`);
 
     return res.data;
   } catch (error) {
@@ -115,56 +85,32 @@ export async function getUsers() {
   }
 }
 export async function getAdminUsers(pageNum) {
-  const res = await axios.get(`${endpoint}/users?pageNumber=${pageNum}`, {
-    headers: {
-      Authorization: `Bearer ${userToken}`, // Add Authorization header with token
-      "Content-Type": "application/json", // Specify content type if needed
-    },
-  });
+  const res = await axios.get(`/api/users?pageNumber=${pageNum}`);
 
   return res.data;
 }
 
 export async function getAdminUserById(id) {
-  const res = await axios.get(`${endpoint}/users/${id}`, {
-    headers: {
-      Authorization: `Bearer ${userToken}`, // Add Authorization header with token
-      "Content-Type": "application/json", // Specify content type if needed
-    },
-  });
+  const res = await axios.get(`/api/users/${id}`);
 
   return res.data;
 }
 
 export async function deleteUser(id) {
-  const res = await axios.delete(`${endpoint}/users/${id}`, {
-    headers: {
-      Authorization: `Bearer ${userToken}`, // Add Authorization header with token
-      "Content-Type": "application/json", // Specify content type if needed
-    },
-  });
+  const res = await axios.delete(`/api/users/${id}`);
 
   return res.data;
 }
 
 export async function updateAdminUser(id, name, email, isAdmin) {
-  const res = await axios.put(
-    `${endpoint}/users/`,
-    { id, name, email, isAdmin },
-    {
-      headers: {
-        Authorization: `Bearer ${userToken}`, // Add Authorization header with token
-        "Content-Type": "application/json", // Specify content type if needed
-      },
-    }
-  );
+  const res = await axios.put(`/api/users/`, { id, name, email, isAdmin });
 
   return res.data;
 }
 
 export async function getUsersById(id) {
   try {
-    const res = await axios.get(`${endpoint}/users/${id}`);
+    const res = await axios.get(`/api/users/${id}`);
 
     return res.data;
   } catch (error) {
@@ -175,7 +121,7 @@ export async function getUsersById(id) {
 
 export async function getOrders(id) {
   try {
-    const res = await axios.get(`${endpoint}/orders/${id}`);
+    const res = await axios.get(`/api/orders/${id}`);
 
     return res.data;
   } catch (error) {
@@ -184,7 +130,7 @@ export async function getOrders(id) {
 }
 
 export async function logoutUser(email, password) {
-  const res = await axios.post(`${endpoint}/users/logout`, {
+  const res = await axios.post(`/api/users/logout`, {
     email,
     password,
   });
@@ -201,7 +147,7 @@ export async function createOrders(
   shippingPrice,
   totalPrice
 ) {
-  const res = await axios.post(`${endpoint}/orders`, {
+  const res = await axios.post(`/api/orders`, {
     user,
     orderItems,
     shippingAddress,
@@ -216,31 +162,17 @@ export async function createOrders(
 }
 
 export async function updateUser(name, email, password) {
-  const res = await axios.put(
-    `${endpoint}/users/profile`,
-    {
-      name,
-      email,
-      password,
-    },
-    {
-      headers: {
-        Authorization: `Bearer ${userToken}`, // Add Authorization header with token
-        "Content-Type": "application/json", // Specify content type if needed
-      },
-    }
-  );
+  const res = await axios.put(`/api/users/profile`, {
+    name,
+    email,
+    password,
+  });
   return res.data;
 }
 
 export async function myOrder() {
   try {
-    const res = await axios.get(`${endpoint}/orders/mine`, {
-      headers: {
-        Authorization: `Bearer ${userToken}`, // Add Authorization header with token
-        "Content-Type": "application/json", // Specify content type if needed
-      },
-    });
+    const res = await axios.get(`/api/orders/mine`);
     return res.data;
   } catch (error) {
     throw Error("Failed to fetch order");
@@ -249,12 +181,7 @@ export async function myOrder() {
 
 export async function getAllOrders(pageNum) {
   try {
-    const res = await axios.get(`${endpoint}/orders?pageNumber=${pageNum}`, {
-      headers: {
-        Authorization: `Bearer ${userToken}`, // Add Authorization header with token
-        "Content-Type": "application/json", // Specify content type if needed
-      },
-    });
+    const res = await axios.get(`/api/orders?pageNumber=${pageNum}`);
 
     return res.data;
   } catch (error) {
@@ -264,14 +191,8 @@ export async function getAllOrders(pageNum) {
 
 export async function updateDeliver(id) {
   const res = await axios.put(
-    `${endpoint}/orders/${id}/deliver`,
-    {}, // Empty data object if no data is being sent
-    {
-      headers: {
-        Authorization: `Bearer ${userToken}`, // Add Authorization header with token
-        "Content-Type": "application/json", // Specify content type if needed
-      },
-    }
+    `/api/orders/${id}/deliver`,
+    {} // Empty data object if no data is being sent
   );
 
   return res.data;
@@ -279,14 +200,8 @@ export async function updateDeliver(id) {
 
 export async function updatePay(id) {
   const res = await axios.put(
-    `${endpoint}/orders/${id}/pay`,
-    {}, // Empty data object if no data is being sent
-    {
-      headers: {
-        Authorization: `Bearer ${userToken}`, // Add Authorization header with token
-        "Content-Type": "application/json", // Specify content type if needed
-      },
-    }
+    `/api/orders/${id}/pay`,
+    {} // Empty data object if no data is being sent
   );
 
   return res.data;
@@ -294,7 +209,7 @@ export async function updatePay(id) {
 
 export async function uploadImage(formDatas) {
   try {
-    const res = await axios.post(`${endpoint}/upload`, formDatas, {
+    const res = await axios.post(`/api/upload`, formDatas, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -307,16 +222,10 @@ export async function uploadImage(formDatas) {
 }
 
 export async function createReview(id, rating, comment) {
-  const res = await axios.post(
-    `${endpoint}/products/${id}/review`,
-    { rating, comment },
-    {
-      headers: {
-        Authorization: `Bearer ${userToken}`, // Add Authorization header with token
-        "Content-Type": "application/json", // Specify content type if needed
-      },
-    }
-  );
+  const res = await axios.post(`/api/products/${id}/review`, {
+    rating,
+    comment,
+  });
 
   return res.data;
 }
@@ -331,7 +240,7 @@ export async function acceptPayment(
   tx_ref
 ) {
   try {
-    const response = await axios.post(`${endpoint}/acceptPayment`, {
+    const response = await axios.post(`/api/acceptPayment`, {
       amount,
       currency,
       email,
@@ -356,7 +265,7 @@ export async function verifyPayment(
   tx_ref
 ) {
   try {
-    const response = await axios.post(`${endpoint}/acceptPayment/webhook`, {
+    const response = await axios.post(`/api/acceptPayment/webhook`, {
       amount,
       currency,
       email,
@@ -369,4 +278,12 @@ export async function verifyPayment(
   } catch (error) {
     throw new Error("Failed to verify");
   }
+}
+
+export async function PayWithStripe(products) {
+  const res = await axios.post(`/api/payments/create-checkout-session`, {
+    products,
+  });
+
+  return res.data;
 }

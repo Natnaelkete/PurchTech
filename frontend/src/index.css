@@ -6,6 +6,15 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  background: radial-gradient(
+    ellipse_at_top,
+    rgba(16, 185, 129, 0.3) 0%,
+    rgba(10, 80, 60, 0.2) 45%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+}
+
 @layer components {
   .align-element {
     @apply mx-auto max-w-6xl px-8;

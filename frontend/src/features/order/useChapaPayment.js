@@ -1,8 +1,10 @@
 import { useMutation } from "@tanstack/react-query";
 import { acceptPayment } from "../../services/apiProduct";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function useChapaPayment() {
+  const navigate = useNavigate();
   const mutation = useMutation({
     mutationFn: ({
       amount,
@@ -26,6 +28,7 @@ function useChapaPayment() {
     onSuccess: (data) => {
       if (data.success.data.checkout_url) {
         console.log(data);
+        window.location.href = data.success.data.checkout_url;
       } else {
         toast.error("Failed to get checkout URL");
       }

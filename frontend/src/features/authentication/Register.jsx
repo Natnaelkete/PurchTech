@@ -1,26 +1,26 @@
 import { Form, Link } from "react-router-dom";
 import { useSignup } from "./useSignup";
 import { toast } from "react-toastify";
-import axios from "axios";
+// import axios from "axios";
 
 function Registers() {
   const { Register, isLoading } = useSignup();
 
-  async function verifyEmail(email) {
-    try {
-      // Use an email verification API
-      const response = await axios.get(
-        `https://api.hunter.io/v2/email-verifier?email=${email}&api_key=${
-          import.meta.env.API_KEY
-        }`
-      );
+  // async function verifyEmail(email) {
+  //   try {
+  //     // Use an email verification API
+  //     const response = await axios.get(
+  //       `https://api.hunter.io/v2/email-verifier?email=${email}&api_key=${
+  //         import.meta.env.API_KEY
+  //       }`
+  //     );
 
-      return response.data.is_valid;
-    } catch (error) {
-      console.error("Email verification failed:", error);
-      return false;
-    }
-  }
+  //     return response.data.is_valid;
+  //   } catch (error) {
+  //     console.error("Email verification failed:", error);
+  //     return false;
+  //   }
+  // }
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -31,13 +31,13 @@ function Registers() {
       return;
     }
 
-    const email = formData.get("email");
-    const isEmailValid = await verifyEmail(email);
+    // const email = formData.get("email");
+    // const isEmailValid = await verifyEmail(email);
 
-    if (!isEmailValid) {
-      toast.error("Please enter a valid and existing Gmail account.");
-      return;
-    }
+    // if (!isEmailValid) {
+    //   toast.error("Please enter a valid and existing Gmail account.");
+    //   return;
+    // }
 
     Register({
       name: formData.get("username"),

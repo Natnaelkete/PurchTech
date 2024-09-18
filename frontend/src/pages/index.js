@@ -13,4 +13,5 @@ export { default as ProfilePages } from "./ProfilePages";
 export { default as OrderListPages } from "./OrderListPages";
 export { default as ProductListPages } from "./ProductListPages";
 export { default as UserListPages } from "./UserListPages";
+export { default as PurchaseSuccessPage } from "./PurchaseSuccessPage";
 export { default as ErrorPages } from "./ErrorPages";

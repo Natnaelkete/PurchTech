@@ -6,6 +6,7 @@ import ChapaIntegration from "./ChapaIntegration";
 import useUpdateDeliver from "../Admin/useUpdateDeliver";
 import { useSelector } from "react-redux";
 import useChapaPayment from "./useChapaPayment";
+import StripeIntegration from "./StripeIntegration";
 
 function Order() {
   const { id: orderId } = useParams();
@@ -126,6 +127,7 @@ function Order() {
               <ChapaIntegration id={orderId} />
             )}
           </div>
+          <StripeIntegration />
         </div>
       </div>
     </>

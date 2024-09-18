@@ -41,6 +41,14 @@ const OrderSchema = new mongoose.Schema(
     paidAt: { type: Date },
     isDelivered: { type: Boolean, require: true, default: false },
     deliveredAt: { type: Date },
+    totalAmount: {
+      type: Number,
+      min: 0,
+    },
+    stripeSessionId: {
+      type: String,
+      unique: true,
+    },
   },
   { timestamps: true }
 );

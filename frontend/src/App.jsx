@@ -5,7 +5,7 @@ import AdminRoute from "./features/AdminRoute";
 import { ContextProvider } from "./features/products/ContextProvider";
 import AppLayout from "./pages/AppLayout";
 import ErrorPages from "./pages/ErrorPages";
-import Spinner from "./ui/Spinner"
+import Spinner from "./ui/Spinner";
 
 // Lazy load pages
 const LoginPages = lazy(() => import("./pages/LoginPages"));
@@ -22,6 +22,7 @@ const OrderListPages = lazy(() => import("./pages/OrderListPages"));
 const ProductListPages = lazy(() => import("./pages/ProductListPages"));
 const UserListPages = lazy(() => import("./pages/UserListPages"));
 const ProductPages = lazy(() => import("./pages/ProductPages"));
+const PurchaseSuccessPage = lazy(() => import("./pages/PurchaseSuccessPage"));
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
         element: <AdminRoute component={UserListPages} />,
       },
       { path: "/product/:productId", element: <DetailPages /> },
+      {
+        path: "/purchase-success",
+        element: <PrivateRoute component={PurchaseSuccessPage} />,
+      },
     ],
   },
   {
@@ -76,7 +81,13 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <Suspense fallback={<div><Spinner/></div>}>
+    <Suspense
+      fallback={
+        <div>
+          <Spinner />
+        </div>
+      }
+    >
       <RouterProvider router={router} />
     </Suspense>
   );
